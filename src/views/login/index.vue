@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="login">
     <!-- login -->
     <el-card class="login-box">
       <img src="../../assets/images/logo_index.png" alt />
@@ -8,14 +8,14 @@
           <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
         <el-form-item prop='code'>
-          <el-input v-model="loginForm.code" placeholder="请输入验证码"></el-input>
-          <el-button>发送验证码</el-button>
+          <el-input style='width:240px' v-model="loginForm.code" placeholder="请输入验证码"></el-input>
+          <el-button style='float:right'>发送验证码</el-button>
         </el-form-item>
         <el-form-item>
-          <el-checkbox :value="true">我已阅读并同意用户协议和隐私条款</el-checkbox>
+          <el-checkbox checked>我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="login">登录</el-button>
+          <el-button type="primary" @click="login" style="width:100%">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style scope lang='less'>
-#app {
+#login {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -82,7 +82,7 @@ export default {
   background: url(../../assets/images/login_bg.jpg) no-repeat center/cover;
   .login-box {
     width: 400px;
-    height: 400px;
+    height: 330px;
     position: absolute;
     left: 50%;
     top: 50%;
