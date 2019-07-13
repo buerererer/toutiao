@@ -9,6 +9,13 @@ import '../node_modules/element-ui/lib/theme-chalk/index.css'
 import router from '@/router'
 
 import axios from 'axios'
+// import axios from '@api/axios'
+// 基准路径
+// axios.defaults.baseURL = ''
+// // token认证
+// axios.defaults.headers = {
+//   Authorization: 'Bearer ' + window.sessionStorage.getItemTem('heimatoutiao').token
+// }
 Vue.prototype.$http = axios
 
 Vue.use(Element)

@@ -37,8 +37,8 @@ export default {
     }
     return {
       loginForm: {
-        mobile: '',
-        code: ''
+        mobile: '17780734515',
+        code: '246810'
       },
       loginRules: {
         mobile: [{ required: true, message: '请输入手机号', trigger: 'blur' },
@@ -60,6 +60,13 @@ export default {
             // 1、跳转到首页
             this.$router.push('/')
             // 2、保存用户信息 用来判断登录状态（token）
+            // sessionStorage BOM对象，全局对象，作用是保存数据
+            // 是有有效期的，当关闭浏览器之后就失效
+            // sessionStorage.setItem(key,value)缓存数据 value字符串
+            // sessionStorage.getItem(key)获取数据
+            // sessionStorage.removeItem(key)删除数据
+            // sessionStorage.clear()清空所有数据
+            window.sessionStorage.setItem('heimatoutiao', JSON.stringify(res.data.data))
           }).catch(() => {
             // 提示错误
             this.$message.error('手机号或验证码错误')
