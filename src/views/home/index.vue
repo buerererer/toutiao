@@ -67,8 +67,8 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-unlock">退出登录</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-setting"  @click.native='setting()'>个人设置</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-unlock" @click.native='logout()'>退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -86,9 +86,21 @@ export default {
       iscollapse: false
     }
   },
+  created () {
+    const user = JSON.parse(window.sessionStorage.getItem('heimatoutiao'))
+    this.avatar = user.photo
+    this.name = user.name
+  },
   methods: {
     toggleMenu () {
       this.iscollapse = !this.iscollapse
+    },
+    setting () {
+      this.$router.push('/setting')
+    },
+    logout () {
+      // 清除sessionStrong中的heimatoutiao
+      window.sessionStorage.removeItem('heimatoutiao')
     }
   }
 }

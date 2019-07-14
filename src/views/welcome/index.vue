@@ -1,5 +1,5 @@
 <template>
-    <div id="welcome">welcome
+    <div id="welcome">
         <img src="../../assets/images/welcome.jpg" alt="">
     </div>
 </template>

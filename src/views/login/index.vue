@@ -50,27 +50,41 @@ export default {
     }
   },
   methods: {
+    // login () {
+    //   // 校验整个表单
+    //   this.$refs.loginForm.validate(valid => {
+    //     if (valid) {
+    //       // 提交登录请求
+    //       this.$http.post('authorizations', this.loginForm).then(res => {
+    //         //   res是响应对象
+    //         // 1、跳转到首页
+    //         // 2、保存用户信息 用来判断登录状态（token）
+    //         // sessionStorage BOM对象，全局对象，作用是保存数据
+    //         // 是有有效期的，当关闭浏览器之后就失效
+    //         // sessionStorage.setItem(key,value)缓存数据 value字符串
+    //         // sessionStorage.getItem(key)获取数据
+    //         // sessionStorage.removeItem(key)删除数据
+    //         // sessionStorage.clear()清空所有数据
+    //         window.sessionStorage.setItem('heimatoutiao', JSON.stringify(res.data.data))
+    //       }).catch(() => {
+    //         // 提示错误
+    //         this.$message.error('手机号或验证码错误')
+    //       })
+    //     }
+    //   })
+    // }
     login () {
-      // 校验整个表单
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          // 提交登录请求
-          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm).then(res => {
-            //   res是响应对象
-            // 1、跳转到首页
-            this.$router.push('/')
-            // 2、保存用户信息 用来判断登录状态（token）
-            // sessionStorage BOM对象，全局对象，作用是保存数据
-            // 是有有效期的，当关闭浏览器之后就失效
-            // sessionStorage.setItem(key,value)缓存数据 value字符串
-            // sessionStorage.getItem(key)获取数据
-            // sessionStorage.removeItem(key)删除数据
-            // sessionStorage.clear()清空所有数据
+          // 发送promise请求
+          // try{业务逻辑}catch(err){处理错误}
+          try {
+            const res = await this.$http.post('authorizations', this.loginForm)
             window.sessionStorage.setItem('heimatoutiao', JSON.stringify(res.data.data))
-          }).catch(() => {
-            // 提示错误
+            this.$router.push('/')
+          } catch (err) {
             this.$message.error('手机号或验证码错误')
-          })
+          }
         }
       })
     }
