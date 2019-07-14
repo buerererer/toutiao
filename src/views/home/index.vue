@@ -52,7 +52,7 @@
       <el-header class="my-header">
         <span @click="toggleMenu" class="el-icon-s-fold"></span>
         <span class="text">江苏传智播客教育有限公司</span>
-        <el-dropdown style="float:right">
+        <el-dropdown style="float:right" @command='handleCommand'>
           <span class="el-dropdown-link">
             <!-- 下拉菜单 -->
 
@@ -60,15 +60,15 @@
               style="vertical-align: middle"
               width="30"
               height="30"
-              src="../../assets/images/avatar.jpg"
+              :src="avatar"
               alt
             />
-            <b style="vertical-align: middle;padding-left:5px">黑马小哥</b>
+            <b style="vertical-align: middle;padding-left:5px">{{name}}</b>
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-setting"  @click.native='setting()'>个人设置</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-unlock" @click.native='logout()'>退出登录</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-setting"  command='setting'>个人设置</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-unlock" command='logout'>退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -83,11 +83,14 @@
 export default {
   data () {
     return {
-      iscollapse: false
+      iscollapse: false,
+      avatar: '',
+      name: ''
     }
   },
   created () {
     const user = JSON.parse(window.sessionStorage.getItem('heimatoutiao'))
+    // console.log(user)
     this.avatar = user.photo
     this.name = user.name
   },
@@ -101,6 +104,10 @@ export default {
     logout () {
       // 清除sessionStrong中的heimatoutiao
       window.sessionStorage.removeItem('heimatoutiao')
+      this.$router.push('/login')
+    },
+    handleCommand (command) {
+      this[command]()
     }
   }
 }
@@ -114,7 +121,6 @@ export default {
   width: 100%;
   height: 100%;
   .my-side {
-    // width: 200px;
     background-color: #002033;
     .logo {
       width: 100%;

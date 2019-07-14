@@ -52,6 +52,7 @@ export default {
   methods: {
     // login () {
     //   // 校验整个表单
+    // validate表单组件的方法
     //   this.$refs.loginForm.validate(valid => {
     //     if (valid) {
     //       // 提交登录请求
