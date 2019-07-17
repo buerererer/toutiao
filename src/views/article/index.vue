@@ -18,14 +18,8 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道：">
-          <el-select v-model="reqParams.channel_id" placeholder="请选择">
-            <el-option
-              v-for="item in channelOptions"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
+          <my-channel @input="fn">子组件在父组件中使用</my-channel>
+          {{reqParams.channel_id}}
         </el-form-item>
         <el-form-item label="日期：">
           <el-date-picker
@@ -109,8 +103,6 @@ export default {
         begin_pubdate: null,
         end_pubdate: null
       },
-      // 频道的选项数组
-      channelOptions: [{ name: 'java', id: 1 }],
       // 日期数据
       dateValues: [],
       // 文章列表数据
@@ -121,9 +113,12 @@ export default {
   },
   created () {
     this.getarticle()
-    this.getoptions()
   },
   methods: {
+    fn (data) {
+      // console.log(data)
+      this.reqParams.channel_id = data
+    },
     // 编辑页面传参跳转
     edit (id) {
       this.$router.push(`/publish?id=${id}`)
@@ -142,7 +137,7 @@ export default {
           // 更新文章列表
           this.getarticle()
         })
-        .catch(() => {})// 点击取消不做任何操作
+        .catch(() => {}) // 点击取消不做任何操作
     },
     // 分页功能
     // 页码改变时触发该函数，函数参数为改变的新页码
@@ -163,14 +158,7 @@ export default {
       this.begin_pubdate = values[0]
       this.end_pubdate = values[1]
     },
-    // 获取频道数据
-    async getoptions () {
-      const {
-        data: { data }
-      } = await this.$http.get('channels')
-      // console.log(data)
-      this.channelOptions = data.channels
-    },
+
     // 获取文章列表
     async getarticle () {
       const {
