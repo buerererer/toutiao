@@ -1,5 +1,5 @@
 <template>
-  <div class="image" v-loading="loadding">
+  <div class="image-container" v-loading="loadding">
     <el-card>
       <div slot="header">
         <my-bread>素材管理</my-bread>
@@ -126,7 +126,7 @@ export default {
         this.dialogVisible = false
         this.getimages()
         // 注意：再次打开对话框的时候，预览的是上传按钮，而不是之前的图片
-        // this.imageUrl = null
+        this.imageUrl = null
       }, 2000)
     },
     // 分页
@@ -158,6 +158,7 @@ export default {
 }
 </script>
 <style scope lang='less'>
+
 .imglist {
   list-style: none;
   margin: 0;

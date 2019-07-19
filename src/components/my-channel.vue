@@ -18,9 +18,9 @@ export default {
     this.getoptions()
   },
   methods: {
-    top (value) {
-      this.$emit('input', value)
-      // console.log(value)
+    top (value1) {
+      this.$emit('input', value1)
+      console.log(value1)
     },
     // 获取频道数据
     async getoptions () {

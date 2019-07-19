@@ -18,7 +18,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道：">
-          <my-channel @input="fn">子组件在父组件中使用</my-channel>
+          <my-channel v-model='reqParams.channel_id'>子组件在父组件中使用</my-channel>
           {{reqParams.channel_id}}
         </el-form-item>
         <el-form-item label="日期：">
@@ -115,10 +115,6 @@ export default {
     this.getarticle()
   },
   methods: {
-    fn (data) {
-      // console.log(data)
-      this.reqParams.channel_id = data
-    },
     // 编辑页面传参跳转
     edit (id) {
       this.$router.push(`/publish?id=${id}`)
