@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import eventBus from '../../eventBus'
 export default {
   data () {
     return {
@@ -93,6 +94,13 @@ export default {
     // console.log(user)
     this.avatar = user.photo
     this.name = user.name
+    // 绑定事件，接收setting组件传来的数据
+    eventBus.$on('updateheadername', (name) => {
+      this.name = name
+    })
+    eventBus.$on('updataheaderptoto', (photo) => {
+      this.avatar = photo
+    })
   },
   methods: {
     toggleMenu () {
